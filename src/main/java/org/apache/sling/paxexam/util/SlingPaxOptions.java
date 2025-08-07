@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -248,7 +249,7 @@ public class SlingPaxOptions {
         final URL url = new URL(mvnUrl);
         final InputStream is = new BufferedInputStream(url.openStream());
         
-        final File tmp = File.createTempFile(SlingPaxOptions.class.getName(), "xml");
+        final File tmp = Files.createTempFile(SlingPaxOptions.class.getName(), "xml").toFile();
         log.debug("Copying bundle list contents to {}", tmp.getAbsolutePath());
         tmp.deleteOnExit();
         final OutputStream os = new BufferedOutputStream(new FileOutputStream(tmp));
